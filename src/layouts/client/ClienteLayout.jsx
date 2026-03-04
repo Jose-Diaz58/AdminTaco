@@ -1,7 +1,11 @@
 import React from 'react'
+import { MenuCliente } from '../../components'
 
-export function ClienteLayout() {
+export function ClienteLayout({children}) {
   return (
-    <div>ClienteLayout</div>
+    <div>
+          <MenuCliente/>
+          {children}
+        </div>
   )
 }

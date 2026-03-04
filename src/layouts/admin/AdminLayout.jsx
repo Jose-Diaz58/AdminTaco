@@ -1,7 +1,11 @@
 import React from 'react'
+import { MenuAdmin } from '../../components'
 
-export function AdminLayout() {
+export function AdminLayout({children}) {
   return (
-    <div>AdminLayout</div>
+    <div>
+      <MenuAdmin/>
+      {children}
+    </div>
   )
 }
