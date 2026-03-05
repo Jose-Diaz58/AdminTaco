@@ -1,9 +1,9 @@
-
+import { Header } from "../../components";
 
 export function ClienteLayout({children}) {
   return (
     <div>
-      ClienteLayout
+      <Header/>
       {children}
     </div>
   );
