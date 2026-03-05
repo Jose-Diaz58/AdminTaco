@@ -19,7 +19,7 @@ const QuitarTaco=()=>setcontador(contador-1)
       <button onClick={QuitarTaco}>-</button>
     </h3>
     <div>
-      HOLAS
+      HOLAS ya tengo sueño:recordatorio que tengo que repasar
     </div>
     </div>
     
