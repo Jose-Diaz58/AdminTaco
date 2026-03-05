@@ -1,5 +1,4 @@
-import React from 'react'
-import { MenuAdmin } from '../../components'
+import { MenuAdmin } from "../../components/";
 
 export function AdminLayout({children}) {
   return (
@@ -7,5 +6,5 @@ export function AdminLayout({children}) {
       <MenuAdmin/>
       {children}
     </div>
-  )
+  );
 }
