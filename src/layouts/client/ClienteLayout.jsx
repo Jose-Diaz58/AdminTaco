@@ -1,7 +1,10 @@
-import React from 'react'
 
-export function ClienteLayout() {
+
+export function ClienteLayout({children}) {
   return (
-    <div>ClienteLayout</div>
-  )
+    <div>
+      ClienteLayout
+      {children}
+    </div>
+  );
 }
