@@ -1,2 +1,2 @@
-export*from "./Header"
-export*from "./Datos"
+export * from "./Header"
+export*from "./Datos/Productos"
