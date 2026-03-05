@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { Productos } from '../../components/Datos/Productos';
 
 export function Home() {
   const [contador, setcontador] = useState(0);
