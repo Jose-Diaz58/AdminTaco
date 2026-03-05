@@ -4,10 +4,10 @@ import {Home, Manager} from "../pages";
 import {ClienteLayout, AdminLayout} from "../layouts";
 
 export function Rutas() {
-  const LoadedLayout=(Layout, Page)=> {
+  const LoadedLayout=(Layout, Pages)=> {
     return(
       <Layout>
-        <Page/>
+        <Pages/>
       </Layout>
     )
   }
