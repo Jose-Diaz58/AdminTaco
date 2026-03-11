@@ -14,9 +14,9 @@ export function Rutas() {
   return (
     <Routes>
       <Route path= '' element={LoadedLayout(ClienteLayout,Home)}/>
-      <Route path= '/Manager' element={LoadedLayout(AdminLayout,GestionProductos)}/>
-      <Route path='/Manager/mesas' element={LoadedLayout(AdminLayout,GestionMesas)}/>
-      <Route path='/Manager/caja' element={LoadedLayout(AdminLayout,CierreCaja)}/>
+      <Route path= '/Manager/Productos' element={LoadedLayout(AdminLayout,GestionProductos)}/>
+      <Route path='/Manager/Mesas' element={LoadedLayout(AdminLayout,GestionMesas)}/>
+      <Route path='/Manager/Caja' element={LoadedLayout(AdminLayout,CierreCaja)}/>
     </Routes>
   )
 }
