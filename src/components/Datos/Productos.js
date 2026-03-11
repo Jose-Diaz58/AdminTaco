@@ -1,12 +1,13 @@
 import React from "react";
 
 export const Productos = [
-  { tipo: "Taco", carne: "Camaron", Precio: 15, Imagen: "IMAGEN" },
+  { tipo:"Taco", carne:"Pastor", Precio: 15, Imagen: "IMAGEN" },
   {
     nombre: "Taco Pastor",
     Precio: 15,
     Imagen: "IMAGEN",
   },
+
   {
     nombre: "Taco Asada de Res",
     Precio: 15,
