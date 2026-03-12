@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { Productos } from '../../components/Datos/Productos';
-import { Todos } from './Todos';
 
 export function Home() {
   const [contador, setcontador] = useState(0);
@@ -10,7 +9,7 @@ const Vendertaco=()=>setcontador(contador+1);
 const QuitarTaco=()=>setcontador(contador-1)
 
   return (
-    <Todos/>
+    <div> Prueba </div>
   //  <div >
   //   <h1>Precio del taco: $15 c/u</h1>
   //   <h2>Tacos pedidos: {contador}</h2>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes,Route,Navigate} from "react-router";
-import {Home, Manager, Tacos,Tortas,Refrescos,Todos} from "../pages";
+import {Home, Manager, Tacos,Tortas,Refrescos,} from "../pages";
 import {ClienteLayout, AdminLayout} from "../layouts";
 
 export function Rutas() {
@@ -14,7 +14,6 @@ export function Rutas() {
   return (
     <Routes>
       <Route path= '/' element={LoadedLayout(ClienteLayout,Home)}/>
-      <Route path='/Todos' element={LoadedLayout(ClienteLayout,Todos)}/>
       <Route path='/Tacos' element={LoadedLayout(ClienteLayout,Tacos)}/>
       <Route path="/Tortas" element={LoadedLayout(ClienteLayout,Tortas)}/>
       <Route path="/Refrescos" element={LoadedLayout(ClienteLayout,Refrescos)}/>

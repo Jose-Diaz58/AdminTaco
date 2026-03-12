@@ -1,4 +1,3 @@
-export*from "./Todos"
 export * from "./Home"
 export*from "./Tacos"
 export*from "./Tortas"

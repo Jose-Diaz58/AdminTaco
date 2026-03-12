@@ -6,14 +6,14 @@ export function ClienteLayout({ children }) {
     <div className="min-h-screen bg-gray-100">
       <Header />
       <NavLink
-        to="/Todos"
+        to="/"
         className={({ isActive }) =>
           isActive
             ? "bg-orange-400 text-white px-3 py-1"
             : "bg-gray-200 text-black px-3 py-1 "
         }
       >
-        Todos
+        Todos 
       </NavLink>
       <NavLink
         to="/Tacos"
