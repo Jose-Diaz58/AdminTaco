@@ -51,6 +51,36 @@ export const Productos = [
     categoria: "Torta",
     emoji: "",
   },
-];
+  //quesadillas
+  {
+    nombre: "Quesadilla de Pastor",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
+  },
+   {
+    nombre: "Quesadilla de Asada",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
+  },
+   {
+    nombre: "Quesadilla de Asada de Cerdo",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
+  },
+   {
+    nombre: "Quesadilla Campechana",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
+  },
+   {
+    nombre: "Quesadilla de Longaniza",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
+  },
 
-//luego lo termino son las 11:45 PD:terminao
+];
