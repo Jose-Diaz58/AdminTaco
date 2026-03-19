@@ -5,6 +5,7 @@ export function ClienteLayout({ children }) {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
+      {/* El que va home */}
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -13,8 +14,9 @@ export function ClienteLayout({ children }) {
             : "bg-gray-200 text-black px-3 py-1 "
         }
       >
-        Todos 
+        Todos
       </NavLink>
+      {/* Tacos */}
       <NavLink
         to="/Tacos"
         className={({ isActive }) =>
@@ -25,6 +27,7 @@ export function ClienteLayout({ children }) {
       >
         Tacos
       </NavLink>
+      {/* Tortas */}
       <NavLink
         to="/Tortas"
         className={({ isActive }) =>
@@ -35,6 +38,18 @@ export function ClienteLayout({ children }) {
       >
         Tortas
       </NavLink>
+      {/* Quesadilas */}
+      <NavLink
+        to="/Quesadillas"
+        className={({ isActive }) =>
+          isActive
+            ? "bg-orange-400 text-white px-3 py-1"
+            : "bg-gray-200 text-black px-3 py-1"
+        }
+      >
+        Quesadillas
+      </NavLink>
+      {/* Refrescos */}
       <NavLink
         to="/Refrescos"
         className={({ isActive }) =>
@@ -45,8 +60,9 @@ export function ClienteLayout({ children }) {
       >
         Refrescos
       </NavLink>
+
       <main className="p-6">{children}</main>
     </div>
   );
 }
-//esta vaina es seria goku
+//PD: ESTAN TODOS LOS NAVLINKS DE NAVEGACION
