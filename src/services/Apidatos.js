@@ -8,6 +8,10 @@ class DatosBD {
     async postDatos (data) {
         return await api.post ('/producto/create', data)
     }
+
+    async eliminarProducto (id) {
+        return await api.delete (`/producto/eliminar/${id}`)
+    }
 }
 
 export default new DatosBD();

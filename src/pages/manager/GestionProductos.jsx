@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Plus, Pencil, Trash2, Save, X } from "lucide-react";
+import Axios from "axios";
 import DatosBD from "../../services/Apidatos";
+import Swal from "sweetalert2";
 
 export function GestionProductos() {
   const [productos, setProductos] = useState([]);
@@ -16,6 +18,38 @@ export function GestionProductos() {
   const obtenerProductos = async () => {
       const datosbd = await DatosBD.getDatos();
       setProductos(datosbd.data);
+  }
+
+
+  const eliminarDatos = async(id)=>{
+      Swal.fire({
+      title: "¿Estás seguro de eliminar el producto?",
+      text: "Una vez borrado no se podra deshacer",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar"
+    }).then(async (result) => { 
+      if (result.isConfirmed) {
+        try {
+          await DatosBD.eliminarProducto(id);
+          obtenerProductos();
+          Swal.fire({
+            title: "¡Eliminado!",
+            text: "El registro ha sido borrado con éxito.",
+            icon: "success"
+          });
+        } catch (error) {
+          Swal.fire({
+            title: "Error",
+            text: "No se pudo eliminar el registro.",
+            icon: "error"
+          });
+        }
+      }
+    })
   }
 
   useEffect(() => {
@@ -162,7 +196,7 @@ export function GestionProductos() {
                         <button className="text-blue-500 hover:text-blue-700 transition-colors">
                           <Pencil size={20} />
                         </button>
-                        <button className="text-red-500 hover:text-red-700 transition-colors">
+                        <button  type="button" onClick={()=>eliminarDatos(producto._id)} className="text-red-500 hover:text-red-700 transition-colors">
                           <Trash2 size={20} />
                         </button>
                       </div>
