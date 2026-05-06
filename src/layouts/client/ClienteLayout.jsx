@@ -1,52 +1,20 @@
-import { Header } from "../../components/Header";
-import { NavLink } from "react-router";
+import { Header } from "../../components";
+import { Carrito } from "../../components/Carrito"
+import { useCarrito } from "../../components/Carrito"
+import { MenuCliente} from "../../components"
 
-export function ClienteLayout() {
+export function ClienteLayout({ children }) {
+  const { carrito, eliminar, cambiarCantidad, total } = useCarrito()
+  
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="flex flex-col h-screen bg-gray-100">
+      <MenuCliente/>
       <Header />
-      <NavLink
-        to="/Todos"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange-400 text-white px-3 py-1"
-            : "bg-gray-200 text-black px-3 py-1 "
-        }
-      >
-        Todos
-      </NavLink>
-      <NavLink
-        to="/Tacos"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange-400 text-white px-3 py-1"
-            : "bg-gray-200 text-black px-3 py-1 "
-        }
-      >
-        Tacos
-      </NavLink>
-      <NavLink
-        to="/Tortas"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange-400 text-white px-3 py-1"
-            : "bg-gray-200 text-black px-3 py-1 "
-        }
-      >
-        Tortas
-      </NavLink>
-      <NavLink
-        to="/Refrescos"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange-400 text-white px-3 py-1"
-            : "bg-gray-200 text-black px-3 py-1 "
-        }
-      >
-        Refrescos
-      </NavLink>
-      <main className="p-6">{children}</main>
+      <div className="flex flex-1 overflow-hidden">
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <Carrito />
+      </div>
     </div>
   );
 }
-//esta vaina es seria goku
+//PD: ESTAN TODOS LOS NAVLINKS DE NAVEGACION

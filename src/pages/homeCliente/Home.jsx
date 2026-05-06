@@ -1,26 +1,20 @@
-import React from 'react'
-import { useState } from 'react'
-import { Productos } from '../../components/Datos/Productos';
-import { Todos } from './Todos';
+
+import { useState } from "react";
+import { Productos } from "../../components/Datos/Productos";
+import { useCarrito } from "../../components/Carrito/CarritoContext"
 
 export function Home() {
-  const [contador, setcontador] = useState(0);
-  const Preciotaco = 15
-const Vendertaco=()=>setcontador(contador+1);
-const QuitarTaco=()=>setcontador(contador-1)
-
+  const { agregar } = useCarrito()
   return (
-    <Todos/>
-  //  <div >
-  //   <h1>Precio del taco: $15 c/u</h1>
-  //   <h2>Tacos pedidos: {contador}</h2>
-  //   <h2>Total a pagar: {contador*Preciotaco}</h2>
-  //   <h3>
-  //     <button  onClick={Vendertaco}
-  //     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+</button>
-  //     <button onClick={QuitarTaco}>-</button>
-  //   </h3>
-  //   </div>
-    
+    <div className="p-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {Productos.map((producto) => (
+          <button
+            key={producto.id}
+            onClick={() => agregar(producto)}
+          >{producto.nombre}-{producto.precio}</button>
+        ))}
+      </div>
+    </div>
   )
 }

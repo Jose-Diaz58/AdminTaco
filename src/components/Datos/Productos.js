@@ -1,72 +1,121 @@
-import React from "react";
+import { Store } from "lucide-react";
 
 export const Productos = [
-  { tipo: "Taco", carne: "Camaron", Precio: 15, Imagen: "IMAGEN" },
+  //Taquitos
   {
-    nombre: "Taco Pastor",
-    Precio: 15,
-    Imagen: "IMAGEN",
+    id:1,
+    nombre: "Taco al pastor",
+    precio: 15,
+    categoria: "Taco",
+    emoji: "",
   },
   {
-    nombre: "Taco Asada de Res",
-    Precio: 15,
-    Imagen: "IMAGEN",
+    id:2,
+    nombre: "Taco de Asada de Cerdo",
+    precio: 15,
+    categoria: "Taco",
+    emoji: "",
   },
   {
+    id:3,
+    nombre: "Taco de Asada de Res",
+    precio: 20,
+    categoria: "Taco",
+    emoji: "",
+  },
+  {
+    id:4,
     nombre: "Taco Campechano",
-    Precio: 15,
-    Imagen: "IMAGEN",
+    precio: 15,
+    categoria: "Taco",
+    emoji: "",
   },
   {
-    nombre: "Taco Asada de cerdo",
-    Precio: 15,
-    Imagen: "IMAGEN",
+    id:5,
+    nombre: "Taco de longaniza",
+    precio: 15,
+    categoria: "Taco",
+    emoji: "",
+  },
+  //Tortas
+  {
+    id:6,
+    nombre: "Torta de Pastor",
+    precio: 65,
+    categoria: "Torta",
+    emoji: "",
   },
   {
-    nombre: "Taco longaniza",
-    Precio: 15,
-    Imagen: "IMAGEN",
+    id:7,
+    nombre: "Torta de Asada de Cerdo",
+    precio: 65,
+    categoria: "Torta",
+    emoji: "",
   },
-  {
-    nombre: "Torda de Asada de Cerdo",
-    Precio: 65,
-    Imagen: "IMAGEN",
+   {
+    id:8,
+    nombre: "Torta Campechana",
+    precio: 65,
+    categoria: "Torta",
+    emoji: "",
   },
+  //quesadillas
   {
-    nombre: "Torda de Pastor",
-    Precio: 65,
-    Imagen: "IMAGEN",
-  },
-  {
-    nombre: "Torda de Asada de Res",
-    Precio: 65,
-    Imagen: "IMAGEN",
-  },
-  {
-    nombre: "Torda Campechana",
-    Precio: 65,
-    Imagen: "IMAGEN",
-  },
-  {
+    id:9,
     nombre: "Quesadilla de Pastor",
-    Precio: 35,
-    Imagen: "IMAGEN",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
   },
-  {
-    nombre: "Quesadilla de Asada de Res",
-    Precio: 35,
-    Imagen: "IMAGEN",
+   {
+    id:10,
+    nombre: "Quesadilla de Asada",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
   },
-  {
-    nombre: "Quesadilla de Asada de cerdo",
-    Precio: 35,
-    Imagen: "IMAGEN",
+   {
+    id:11,
+    nombre: "Quesadilla de Asada de Cerdo",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
   },
-  {
+   {
+    id:12,
     nombre: "Quesadilla Campechana",
-    Precio: 35,
-    Imagen: "IMAGEN",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
   },
-];
+   {
+    id:13,
+    nombre: "Quesadilla de Longaniza",
+    precio: 65,
+    categoria: "Quesadilla",
+    emoji: "",
+  },
+  //Refrescos
+  {
+    id:14,
+    nombre: "Coca-Cola(600ml)",
+    precio: 30,
+    categoria: "Refrescos",
+    emoji: "",
+  },
+   {
+    id:15,
+    nombre: "Pesi(600ml)",
+    precio: 30,
+    categoria: "Refrescos",
+    emoji: "",
+  },
+   {
+    id:16,
+    nombre: "Manzanita(600ml)",
+    precio: 30,
+    categoria: "Refrescos",
+    emoji: "",
+  },
 
-//luego lo termino son las 11:45 PD:terminao
+];
