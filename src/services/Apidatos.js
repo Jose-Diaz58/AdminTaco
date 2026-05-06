@@ -12,6 +12,10 @@ class DatosBD {
     async eliminarProducto (id) {
         return await api.delete (`/producto/eliminar/${id}`)
     }
+
+    async modificarDatos (id, data) {
+        return await api.put (`/producto/actualizar/${id}`, data)
+    }
 }
 
 export default new DatosBD();

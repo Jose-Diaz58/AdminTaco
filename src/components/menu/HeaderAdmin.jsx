@@ -8,6 +8,8 @@ export function HeaderAdmin({toggleSidebar}) {
             <Menu size={24}/>
         </button>
 
+        <span className="text-3xl md:text-4xl">🌮</span>
+
         <div className="flex flex-col">
             <h1 className="text-2xl font-bold leading-none mb-1">Panel de Administracion</h1>
             <p className="text-sm text-orange-100 font-light">Taqueria Abraham</p>
