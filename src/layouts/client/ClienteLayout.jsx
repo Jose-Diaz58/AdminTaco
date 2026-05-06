@@ -1,11 +1,16 @@
 import { Header } from "../../components";
-import { NavLink } from "react-router";
+import { Carrito } from "../../components/Carrito"
+import { useCarrito } from "../../components/Carrito"
 
 export function ClienteLayout({ children }) {
+  const { carrito, eliminar, cambiarCantidad, total } = useCarrito()
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="flex flex-col h-screen bg-gray-100">
       <Header />
-      <main className="p-6">{children}</main>
+      <div className="flex flex-1 overflow-hidden">
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <Carrito />
+      </div>
     </div>
   );
 }

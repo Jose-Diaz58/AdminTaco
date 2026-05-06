@@ -2,6 +2,7 @@ import React from 'react';
 import {Routes,Route,Navigate} from "react-router";
 import {Home, Manager, Tacos,Tortas,Refrescos, Quesadillas,} from "../pages";
 import {ClienteLayout, AdminLayout} from "../layouts";
+import {CarritoProvider}from "../components/Carrito/CarritoContext"
 
 export function Rutas() {
   const LoadedLayout=(Layout, Pages)=> {
@@ -12,6 +13,7 @@ export function Rutas() {
     )
   }
   return (
+    <CarritoProvider>
     <Routes>
       <Route path= '/' element={LoadedLayout(ClienteLayout,Home)}/>
       <Route path='/Tacos' element={LoadedLayout(ClienteLayout,Tacos)}/>
@@ -21,6 +23,7 @@ export function Rutas() {
       <Route path= '/Manager' element={LoadedLayout(AdminLayout,Manager)}/>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
+    </CarritoProvider>
   )
 }
 export default Rutas

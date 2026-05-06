@@ -1,14 +1,18 @@
 import React from 'react'
 import { Productos } from '../../components/Datos/Productos'
+import { useCarrito } from "../../components/Carrito"
+
+
 export function Quesadillas() {
-    const Quesadillas=Productos.filter(dato=>dato.categoria==="Quesadilla")
-    console.log(Quesadillas)
+  const { agregar } = useCarrito();
+
+  const Quesadillas = Productos.filter(dato => dato.categoria === "Quesadilla")
+  console.log(Quesadillas)
   return (
-    <div>{Quesadillas.map((quesadillas, index) => (
-                <div key={index}>
-                  <h3>{quesadillas.nombre}</h3>
-                  <h3>{quesadillas.precio}</h3>
-                </div>
-              ))}</div>
+    <div className="p-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+      {Quesadillas.map((quesa) => (
+        <button key={quesa.id} onClick={() => agregar(quesa)}>{quesa.nombre}-{quesa.precio}</button>
+      ))}
+    </div>
   )
 }

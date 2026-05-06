@@ -1,45 +1,20 @@
 
 import { useState } from "react";
 import { Productos } from "../../components/Datos/Productos";
+import { useCarrito } from "../../components/Carrito/CarritoContext"
 
 export function Home() {
-  const [carrito, setCarrito] = useState([]);
-
-  const agregar = (producto) => {
-    const existe = carrito.find(item => item.id === producto.id);
-
-    if (existe) {
-      setCarrito(carrito.map(item =>
-        item.id === producto.id
-          ? { ...item, cantidad: item.cantidad + 1 }
-          : item
-      ));
-    } else {
-      setCarrito([...carrito, { ...producto, cantidad: 1 }]);
-    }
-  };
-
-  const total = carrito.reduce((acumulado, item) => {
-    return acumulado + item.precio * item.cantidad;
-  }, 0);
-
+  const { agregar } = useCarrito()
   return (
-    <div>
-      {Productos.map((producto) => (
-        <button key={producto.id} onClick={() => agregar(producto)}>
-          {producto.nombre} - ${producto.precio}
-        </button>
-      ))}
-
-      <h2>Pedido</h2>
-      {carrito.map((item, index) => (
-        <p key={index}>
-          {item.nombre} x{item.cantidad} - ${item.precio * item.cantidad}
-        </p>
-      ))}
-      <p>Total: ${total}</p>
-
+    <div className="p-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {Productos.map((producto) => (
+          <button
+            key={producto.id}
+            onClick={() => agregar(producto)}
+          >{producto.nombre}-{producto.precio}</button>
+        ))}
+      </div>
     </div>
-
-  );
+  )
 }

@@ -95,5 +95,27 @@ export const Productos = [
     categoria: "Quesadilla",
     emoji: "",
   },
+  //Refrescos
+  {
+    id:14,
+    nombre: "Coca-Cola(600ml)",
+    precio: 30,
+    categoria: "Refrescos",
+    emoji: "",
+  },
+   {
+    id:15,
+    nombre: "Pesi(600ml)",
+    precio: 30,
+    categoria: "Refrescos",
+    emoji: "",
+  },
+   {
+    id:16,
+    nombre: "Manzanita(600ml)",
+    precio: 30,
+    categoria: "Refrescos",
+    emoji: "",
+  },
 
 ];
