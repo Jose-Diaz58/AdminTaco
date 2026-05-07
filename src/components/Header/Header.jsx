@@ -16,7 +16,7 @@ export function Header() {
 
       <nav className="flex gap-3 px-6 pb-4 overflow-x-auto no-scrollbar">
         <NavLink
-          to="/"
+          to="/Inicio"
           end
           className={({ isActive }) =>
             "px-4 py-2 rounded-2xl font-semibold transition-colors whitespace-nowrap " +
