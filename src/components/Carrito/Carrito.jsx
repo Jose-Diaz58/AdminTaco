@@ -2,10 +2,10 @@ import { useCarrito } from "./CarritoContext";
 import { ShoppingCart, Trash2, Plus, Minus, CreditCard } from "lucide-react";
 
 export function Carrito() {
-  const { carrito, eliminar, cambiarCantidad, total } = useCarrito();
+  const { carrito, eliminar, cambiarCantidad, total, limpiarCarrito } = useCarrito();
 
   return (
-    <aside className="w-72 h-full bg-white border-l border-gray-100 flex flex-col">
+    <aside className="w-90 h-full bg-white border-l border-gray-100 flex flex-col">
 
       {/* Header */}
       <div className=" bg-gray-100 p-4 border-b flex items-center gap-2">
@@ -24,7 +24,7 @@ export function Carrito() {
         ) : (
           <ul className="space-y-2">
             {carrito.map((item) => (
-              <li key={item.id} className="flex items-center gap-2 bg-gray-50 rounded-lg p-2">
+              <li key={item.id} className="flex items-center gap-2 bg-gray-100 rounded-lg p-2">
                 <span className="text-xl">{item.emoji}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-medium text-gray-700 truncate">{item.nombre}</p>
@@ -50,27 +50,26 @@ export function Carrito() {
 
       {/* Total y cobrar */}
       <div className="p-4 border-t space-y-3">
-        <div className="flex justify-between text-sm text-gray-500">
-          <span>Subtotal:</span>
-          <span>${total.toFixed(2)}</span>
-        </div>
         <div className="flex justify-between font-bold">
           <span>Total:</span>
           <span className="text-orange-500">${total.toFixed(2)}</span>
         </div>
         <button
           disabled={carrito.length === 0}
-          className={`w-full py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
-            carrito.length > 0
-              ? "bg-orange-500 hover:bg-orange-600 text-white"
-              : "bg-gray-100 text-gray-400 cursor-not-allowed"
-          }`}
+          onClick={() => {
+            alert(`Total a cobrar: $${total.toFixed(2)}`);
+            limpiarCarrito();
+          }}
+          className={`w-full py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${carrito.length > 0
+            ? "bg-orange-500 hover:bg-orange-600 text-white"
+            : "bg-gray-100 text-gray-400 cursor-not-allowed"
+            }`}
         >
           <CreditCard size={16} />
           COBRAR
         </button>
       </div>
 
-    </aside>
+    </aside >
   );
 }

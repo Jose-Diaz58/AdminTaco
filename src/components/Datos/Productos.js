@@ -3,119 +3,119 @@ import { Store } from "lucide-react";
 export const Productos = [
   //Taquitos
   {
-    id:1,
+    id: 1,
     nombre: "Taco al pastor",
     precio: 15,
     categoria: "Taco",
-    emoji: "",
+    emoji: "🌮",
   },
   {
-    id:2,
+    id: 2,
     nombre: "Taco de Asada de Cerdo",
     precio: 15,
     categoria: "Taco",
-    emoji: "",
+    emoji: "🌮",
   },
   {
-    id:3,
+    id: 3,
     nombre: "Taco de Asada de Res",
     precio: 20,
     categoria: "Taco",
-    emoji: "",
+    emoji: "🌮",
   },
   {
-    id:4,
+    id: 4,
     nombre: "Taco Campechano",
     precio: 15,
     categoria: "Taco",
-    emoji: "",
+    emoji: "🌮",
   },
   {
-    id:5,
+    id: 5,
     nombre: "Taco de longaniza",
     precio: 15,
     categoria: "Taco",
-    emoji: "",
+    emoji: "🌮",
   },
   //Tortas
   {
-    id:6,
+    id: 6,
     nombre: "Torta de Pastor",
     precio: 65,
     categoria: "Torta",
-    emoji: "",
+    emoji: "🥖",
   },
   {
-    id:7,
+    id: 7,
     nombre: "Torta de Asada de Cerdo",
     precio: 65,
     categoria: "Torta",
-    emoji: "",
+    emoji: "🥖",
   },
-   {
-    id:8,
+  {
+    id: 8,
     nombre: "Torta Campechana",
     precio: 65,
     categoria: "Torta",
-    emoji: "",
+    emoji: "🥖",
   },
   //quesadillas
   {
-    id:9,
+    id: 9,
     nombre: "Quesadilla de Pastor",
     precio: 65,
     categoria: "Quesadilla",
-    emoji: "",
+    emoji: "🥟",
   },
-   {
-    id:10,
+  {
+    id: 10,
     nombre: "Quesadilla de Asada",
     precio: 65,
     categoria: "Quesadilla",
-    emoji: "",
+    emoji: "🥟",
   },
-   {
-    id:11,
+  {
+    id: 11,
     nombre: "Quesadilla de Asada de Cerdo",
     precio: 65,
     categoria: "Quesadilla",
-    emoji: "",
+    emoji: "🥟",
   },
-   {
-    id:12,
+  {
+    id: 12,
     nombre: "Quesadilla Campechana",
     precio: 65,
     categoria: "Quesadilla",
-    emoji: "",
+    emoji: "🥟",
   },
-   {
-    id:13,
+  {
+    id: 13,
     nombre: "Quesadilla de Longaniza",
     precio: 65,
     categoria: "Quesadilla",
-    emoji: "",
+    emoji: "🥟",
   },
   //Refrescos
   {
-    id:14,
+    id: 14,
     nombre: "Coca-Cola(600ml)",
     precio: 30,
     categoria: "Refrescos",
-    emoji: "",
+    emoji: "🥟",
   },
-   {
-    id:15,
+  {
+    id: 15,
     nombre: "Pesi(600ml)",
     precio: 30,
     categoria: "Refrescos",
-    emoji: "",
+    emoji: "🥤",
   },
-   {
-    id:16,
+  {
+    id: 16,
     nombre: "Manzanita(600ml)",
     precio: 30,
     categoria: "Refrescos",
-    emoji: "",
+    emoji: "🥤",
   },
 
 ];
