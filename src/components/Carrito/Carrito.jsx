@@ -57,7 +57,7 @@ export function Carrito() {
         <button
           disabled={carrito.length === 0}
           onClick={() => {
-            alert(`Total a cobrar: $${total.toFixed(2)}`);
+            alert("TU DINERO ES MIO MUAAJAJAJ");
             limpiarCarrito();
           }}
           className={`w-full py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${carrito.length > 0
