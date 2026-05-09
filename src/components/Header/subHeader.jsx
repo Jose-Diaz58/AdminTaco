@@ -45,6 +45,7 @@ export function SubHeader() {
                     : "bg-white text-gray-700 border-gray-200 hover:border-orange-400 hover:bg-gray-100")
                 }
                 >
+                    {item.icon}
                     {item.name}
               </NavLink>
                 )}
