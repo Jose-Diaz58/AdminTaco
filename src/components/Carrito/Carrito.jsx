@@ -1,8 +1,38 @@
 import { useCarrito } from "./CarritoContext";
 import { ShoppingCart, Trash2, Plus, Minus, CreditCard } from "lucide-react";
+import DatosBD from "../../services/Apidatos"
+import Swal from "sweetalert2"
 
 export function Carrito() {
   const { carrito, eliminar, cambiarCantidad, total, limpiarCarrito } = useCarrito();
+
+  const realizarCobro = async () => {
+    try {
+      const ticket = {
+        productos: carrito,
+        total: total
+      };
+      await DatosBD.postVenta(ticket);
+      
+      Swal.fire({
+        position: "center",
+        icon: 'success',
+        title: 'Venta exitosa',
+        text: 'El pedido se ha registrado en la caja',
+        showConfirmButton: false,
+        timer: 2000
+      });
+
+      limpiarCarrito();
+    } catch (error) {
+      console.error("Error al cobrar:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Hubo un problema al registrar la venta',
+      });
+    }
+  };
 
   return (
     <aside className="w-90 h-full bg-white border-l border-gray-100 flex flex-col">
@@ -24,22 +54,22 @@ export function Carrito() {
         ) : (
           <ul className="space-y-2">
             {carrito.map((item) => (
-              <li key={item.id} className="flex items-center gap-2 bg-gray-100 rounded-lg p-2">
+              <li key={item._id} className="flex items-center gap-2 bg-gray-100 rounded-lg p-2">
                 <span className="text-xl">{item.emoji}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-medium text-gray-700 truncate">{item.nombre}</p>
                   <p className="text-xs text-orange-500 font-bold">${item.precio * item.cantidad}</p>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button onClick={() => cambiarCantidad(item.id, -1)} className="w-5 h-5 rounded-full bg-gray-200 hover:bg-orange-100 flex items-center justify-center">
+                  <button onClick={() => cambiarCantidad(item._id, -1)} className="w-5 h-5 rounded-full bg-gray-200 hover:bg-orange-100 flex items-center justify-center">
                     <Minus size={10} />
                   </button>
                   <span className="text-xs font-bold w-4 text-center">{item.cantidad}</span>
-                  <button onClick={() => cambiarCantidad(item.id, 1)} className="w-5 h-5 rounded-full bg-gray-200 hover:bg-orange-100 flex items-center justify-center">
+                  <button onClick={() => cambiarCantidad(item._id, 1)} className="w-5 h-5 rounded-full bg-gray-200 hover:bg-orange-100 flex items-center justify-center">
                     <Plus size={10} />
                   </button>
                 </div>
-                <button onClick={() => eliminar(item.id)} className="text-gray-300 hover:text-red-400">
+                <button onClick={() => eliminar(item._id)} className="text-gray-300 hover:text-red-400">
                   <Trash2 size={14} />
                 </button>
               </li>
@@ -56,10 +86,7 @@ export function Carrito() {
         </div>
         <button
           disabled={carrito.length === 0}
-          onClick={() => {
-            alert("TU DINERO ES MIO MUAAJAJAJ");
-            limpiarCarrito();
-          }}
+          onClick={realizarCobro}
           className={`w-full py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${carrito.length > 0
             ? "bg-orange-500 hover:bg-orange-600 text-white"
             : "bg-gray-100 text-gray-400 cursor-not-allowed"
@@ -69,7 +96,6 @@ export function Carrito() {
           COBRAR
         </button>
       </div>
-
-    </aside >
-  );
+    </aside>
+  )
 }

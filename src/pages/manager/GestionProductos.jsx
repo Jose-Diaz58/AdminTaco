@@ -59,8 +59,8 @@ export function GestionProductos() {
   }, []);
 
   return (
-    <div className="w-full relative max-w-6xl mx-auto">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="w-full relative max-w-6xl mx-auto px-2">
+      <div className="bg-white rounded-xl shadow-lg flex flex-col h-[calc(100vh-160px)] overflow-hidden border border-gray-100">
 
         <div className="bg-linear-to-r from-orange-500 to-orange-600 text-white p-4 md:p-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -91,7 +91,7 @@ export function GestionProductos() {
           </div>
         </Dialog>
 
-        <div className="overflow-x-auto">
+        <div className="flex-1 overflow-auto">
           <ListaProductos productos={productos} handleOpen={handleOpen} eliminarDatos={eliminarDatos}/>
         </div>
       </div>

@@ -6,10 +6,11 @@ export function CarritoProvider({ children }) {
 
     //agregasao
     const agregar = (producto) => {
-        const existe = carrito.find((item) => item.id === producto.id);
+        const prodId = producto._id
+        const existe = carrito.find((item) => item._id === prodId);
 
         if (existe) {
-            setCarrito(carrito.map(item => item.id === producto.id
+            setCarrito(carrito.map(item => item._id === prodId
                 ? { ...item, cantidad: item.cantidad + 1 } : item));
         } else {
             setCarrito([...carrito, { ...producto, cantidad: 1 }])
@@ -17,13 +18,13 @@ export function CarritoProvider({ children }) {
     }
     //elimisao
     const eliminar = (id) => {
-        setCarrito(carrito.filter((item) => item.id !== id))
+        setCarrito(carrito.filter((item) => item._id !== id))
     }
     //modificasao
     const cambiarCantidad = (id, delta) => {
         setCarrito(
             carrito
-                .map((item) => item.id === id ? { ...item, cantidad: item.cantidad + delta } : item)
+                .map((item) => item._id === id ? { ...item, cantidad: item.cantidad + delta } : item)
                 .filter((item) => item.cantidad > 0)
         );
     }

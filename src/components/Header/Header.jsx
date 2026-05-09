@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
+import {LogOut} from "lucide-react"
 export function Header() {
   return (
     <header className="bg-white border-b shadow-sm">
@@ -7,10 +8,10 @@ export function Header() {
         <div className="flex items-center gap-2 text-orange-500 font-bold text-2xl">
           <button onClick={()=>alert("Profe paseme la materia 😭")}>🌮</button><span>Taqueria el amigo Abraham</span>
         </div>
-        <button className="text-2xl text-gray-700 hover:text-orange-500">
+        <NavLink  to={"/"}className="text-2xl text-gray-700 hover:text-orange-500">
           {" "}
-          ☰
-        </button>
+          <LogOut/>
+        </NavLink>
       </div>
     </header>
   );
