@@ -101,7 +101,7 @@ export const Productos = [
     nombre: "Coca-Cola(600ml)",
     precio: 30,
     categoria: "Refrescos",
-    emoji: "🥟",
+    emoji: "🥤",
   },
   {
     id: 15,
