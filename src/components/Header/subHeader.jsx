@@ -39,7 +39,7 @@ export function SubHeader() {
                 to={item.path}
                 end
                 className={({ isActive }) =>
-                    "px-4 py-2 rounded-lg font-semibold transition-colors whitespace-nowrap " +
+                    "px-4 py-2 rounded-lg font-semibold transition-colors whitespace-nowrap border-b-2 " +
                 (isActive
                     ? "bg-orange-500 text-white border-orange-500"
                     : "bg-white text-gray-700 border-gray-200 hover:border-orange-400 hover:bg-gray-100")

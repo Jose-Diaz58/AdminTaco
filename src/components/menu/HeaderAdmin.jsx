@@ -23,7 +23,7 @@ export function HeaderAdmin({toggleSidebar}) {
                 <span className="text-sm text-orange-100 leading-tight">Admin</span>
             </div>
             <UserCircle size={38} className="text-white opacity-90"/>
-            <NavLink  to={"/"}className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 ml-2 rounded-lg font-medium border border-red-500 transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:-translate-y-1 hover:border-red-600 active:scale-95">
+            <NavLink  to={"/Inicio"}className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 ml-2 rounded-lg font-medium border border-red-500 transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:-translate-y-1 hover:border-red-600 active:scale-95">
           <LogOut/>
         </NavLink>
         </div>
