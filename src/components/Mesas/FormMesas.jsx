@@ -58,7 +58,7 @@ export function FormMesas({ closeModal, obtenerMesas, datos }) {
 
         <div>
           <label htmlFor="capacidad" className="block mb-2 text-sm font-semibold text-gray-700">
-            Capacidad
+            Capacidad de Personas
           </label>
           <input
             type="number"
