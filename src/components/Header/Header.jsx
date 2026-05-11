@@ -1,12 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router";
 import { LogOut, Settings } from "lucide-react"
+import Swal from "sweetalert2";
 export function Header() {
+  const isterek=()=>{
+ Swal.fire({
+  title: "BIENVENIDOS A LA TAQUERIA EL AMIGO ABRAHAM >:D",
+  width: 600,
+  padding: "3em",
+  color: "#716add",
+  background: "#fff",
+  backdrop: `
+    rgba(0,0,123,0.4)
+    url("https://media1.tenor.com/m/NVrx4YqUGDIAAAAC/cat-nyan-cat.gif")
+    left top / 300px 300px
+    no-repeat
+  `
+});
+  }
   return (
     <header className="bg-orange-600 border-b-white shadow-sm">
       <div className="flex items-center justify-between px-4 py-4">
         <div className="flex items-center gap-2 text-white font-bold text-2xl">
-          <button onClick={() => alert("Profe paseme la materia 😭")}>🌮</button><span>Taqueria el amigo Abraham</span>
+          <button onClick={isterek}>🌮</button><span>Taqueria el amigo Abraham</span>
         </div>
         <div className="flex items-center gap-3">
           <NavLink to={"/Manager/Productos"}
