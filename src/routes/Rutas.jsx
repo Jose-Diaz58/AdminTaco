@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes,Route,Navigate} from "react-router";
-import {Home, Tacos,Tortas,Refrescos, Quesadillas,GestionProductos, GestionMesas, CierreCaja} from "../pages";
+import {Home, Tacos,Tortas,Refrescos, Quesadillas,GestionProductos, GestionMesas, CierreCaja, Login} from "../pages";
 import {ClienteLayout, AdminLayout} from "../layouts";
 import {CarritoProvider}from "../components/Carrito/CarritoContext"
 
@@ -15,7 +15,8 @@ export function Rutas() {
   return (
     <CarritoProvider>
     <Routes>
-      <Route path= '/' element={LoadedLayout(ClienteLayout,Home)}/>
+      <Route path='/' element={<Login />} />
+      <Route path= '/Inicio' element={LoadedLayout(ClienteLayout,Home)}/>
       <Route path= '/Manager/Productos' element={LoadedLayout(AdminLayout,GestionProductos)}/>
       <Route path='/Manager/Mesas' element={LoadedLayout(AdminLayout,GestionMesas)}/>
       <Route path='/Manager/Caja' element={LoadedLayout(AdminLayout,CierreCaja)}/>

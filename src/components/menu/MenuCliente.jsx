@@ -1,5 +1,6 @@
 // src/components/menu/MenuCliente.jsx
 import { LogOut } from "lucide-react";
+import { NavLink } from "react-router"
 
 export function MenuCliente() {
   return (
@@ -15,10 +16,10 @@ export function MenuCliente() {
             <p className="text-xs text-orange-100">Usuario</p>
             <p className="font-bold leading-none">Cliente</p>
           </div>
-          <button className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-medium transition-colors border border-red-500">
+          <NavLink to={"/"} className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-medium transition-colors border border-red-500">
             <LogOut size={18} />
             <span className="hidden sm:inline">Salir</span>
-          </button>
+          </NavLink>
         </div>
       </div>
 
