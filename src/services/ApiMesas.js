@@ -8,7 +8,7 @@ class MesasBD{
         return await api.post('/mesa/create',data)
     }
     async eliminarMesas(id){
-        return await api.delete(`/mesa/eliminar ${id}`)
+        return await api.delete(`/mesa/eliminar/${id}`)
     }
     async modificarMesa(id,data){
         return await api.put(`/mesa/modificar/${id}`, data)
