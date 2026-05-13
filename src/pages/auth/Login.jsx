@@ -13,7 +13,7 @@ export function Login() {
   return (
     <div className="min-h-screen bg-orange-50 flex flex-col items-center justify-center p-4">
       
-      {/* 2. ENCABEZADO: Logo y Nombre de la App */}
+      {/*Encabezado*/}
       <div className="flex flex-col items-center mb-8">
         <div className="bg-orange-600 p-3 rounded-2xl mb-3 shadow-lg">
           <span className='text-3xl md:text-4xl'>🌮</span>
@@ -22,12 +22,12 @@ export function Login() {
         <p className="text-gray-500 text-sm">Punto de Venta Inteligente</p>
       </div>
 
-      {/* 3. TARJETA BLANCA: El formulario central */}
+      {/* formulario */}
       <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl p-10">
         <h2 className="text-2xl font-semibold text-gray-700 mb-8 text-center">Iniciar Sesión</h2>
         
         <form className="space-y-6">
-          {/* Grupo Usuario */}
+          {/*  Usuario */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-2">Usuario</label>
             <div className="flex items-center border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus-within:bg-white focus-within:border-orange-500 transition-all">
@@ -40,7 +40,7 @@ export function Login() {
             </div>
           </div>
 
-          {/* Grupo Contraseña */}
+          {/*  Contraseña */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-2">Contraseña</label>
             <div className="flex items-center border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus-within:bg-white focus-within:border-orange-500 transition-all">
@@ -53,7 +53,7 @@ export function Login() {
             </div>
           </div>
 
-          {/* Opciones adicionales */}
+          {/* Opciones  */}
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center text-gray-500 cursor-pointer">
               <input type="checkbox" className="mr-2 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
@@ -62,7 +62,7 @@ export function Login() {
             <a href="#" className="text-orange-600 hover:underline font-medium">¿Olvidaste tu contraseña?</a>
           </div>
 
-          {/* Botón de Entrada */}
+          {/* puchis o picar para entrar */}
           <button 
             type="submit" onClick={handleLogin}
             className="w-full bg-orange-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-orange-700 hover:shadow-orange-200 transition-all transform active:scale-95"
@@ -72,7 +72,7 @@ export function Login() {
         </form>
       </div>
 
-      {/* 4. PIE DE PÁGINA */}
+      {/* Pie de pagina*/}
       <div className="mt-10 text-center space-y-1">
         <p className="text-gray-400 text-xs">AdminTaco POS © 2026 - Todos los derechos reservados</p>
         <p className="text-gray-400 text-xs">¿Necesitas ayuda? <span className="text-orange-400 font-medium cursor-pointer">Contactar soporte</span></p>

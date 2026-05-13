@@ -44,8 +44,7 @@ export function MesasGestion({ mesas, handleOpen, eliminarMesa, liberarMesa ,obt
             productos: mesa.pedido,
             total: mesa.total
           });
-
-          // CORRECCIÓN: Solo necesitamos pasarle el ID de la mesa
+          
           await liberarMesa(mesa._id);
           Swal.fire({
             title: "¡Venta exitosa!",
@@ -70,13 +69,13 @@ export function MesasGestion({ mesas, handleOpen, eliminarMesa, liberarMesa ,obt
             mesa.estado === "Libre" ? "border-green-100" : "border-red-100"
           }`}
         >
-          {/* Indicador de Estado (Puntito verde o rojo) */}
+          {/* Puntito verde o rojo */}
           <div className={`absolute top-3 right-3 w-3 h-3 rounded-full ${
             mesa.estado === "Libre" ? "bg-green-500" : "bg-red-500"
           }`} />
 
           <div className="flex flex-col items-center gap-3">
-            {/* Círculo con el número de mesa */}
+            {/*  número de mesa */}
             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-bold ${
               mesa.estado === "Libre" ? "bg-green-50 text-green-600" : "bg-red-50 text-red-600"
             }`}>
@@ -92,7 +91,7 @@ export function MesasGestion({ mesas, handleOpen, eliminarMesa, liberarMesa ,obt
               </div>
             </div>
 
-            {/* Acciones Generales (Editar/Eliminar) */}
+            {/* Acciones  */}
             <div className="flex gap-4 mt-2">
               <button
                 onClick={() => handleOpen(mesa)}
@@ -110,7 +109,7 @@ export function MesasGestion({ mesas, handleOpen, eliminarMesa, liberarMesa ,obt
               </button>
             </div>
 
-            {/* SECCIÓN DE COBRO: Solo aparece si la mesa está ocupada */}
+            {/* SECCIÓN DE COBRO:  */}
             {mesa.estado === "Ocupado" && (
               <div className="w-full text-center mt-3 border-t pt-3 border-gray-100">
                 <p className="text-sm font-bold text-gray-700 mb-2">Total: ${mesa.total}</p>

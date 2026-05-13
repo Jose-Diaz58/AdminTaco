@@ -5,19 +5,19 @@ import { X, Users, Utensils } from "lucide-react";
 import Swal from "sweetalert2";
 
 export function PanelMesas({ onClose }) {
-  // 1. Traemos la info de las mesas y del carrito
+  
   const { mesas, asignarMesa } = useMesas();
   const { carrito, total, limpiarCarrito } = useCarrito();
 
   const handleSeleccionarMesa = async (mesa) => {
-    // Si la mesa está ocupada, no dejamos asignar otra vez (opcional)
+    
     if (mesa.estado === "Ocupado") {
       Swal.fire("Mesa Ocupada", "Esta mesa ya tiene un pedido en curso", "error");
       return;
     }
 
     try {
-      // 2. Usamos la función del contexto para guardar el pedido en la BD
+      
       await asignarMesa(mesa._id, carrito, total);
 
       Swal.fire({
@@ -27,7 +27,7 @@ export function PanelMesas({ onClose }) {
         timer: 1500
       });
 
-      // 3. Limpiamos el carrito y cerramos el modal
+
       limpiarCarrito();
       onClose();
     } catch (error) {
@@ -40,7 +40,7 @@ export function PanelMesas({ onClose }) {
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
       <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         
-        {/* Encabezado del Modal */}
+        {/* encabezado del modal */}
         <div className="bg-orange-600 p-4 text-white flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Utensils size={24} />
@@ -51,7 +51,7 @@ export function PanelMesas({ onClose }) {
           </button>
         </div>
 
-        {/* Grid de Mesas */}
+        {/*  Mesas */}
         <div className="p-6 overflow-y-auto bg-gray-50 flex-1">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {mesas.map((mesa) => (

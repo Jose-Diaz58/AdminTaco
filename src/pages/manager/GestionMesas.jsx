@@ -36,7 +36,7 @@ export function GestionMesas() {
             </div>
             <button onClick={() => handleOpen()}
               className="flex items-center justify-center gap-2 bg-white text-orange-600 px-4 py-2 rounded-lg font-bold hover:bg-orange-50 transition-colors text-sm md:text-base">
-              <Plus className="w-4 h-4 md:w-5 md:h-5" />Nueva Mesa pro
+              <Plus className="w-4 h-4 md:w-5 md:h-5" />Nueva Mesa 
             </button>
             <Dialog open={isOpen} onClose={() => handleOpen()} className="relative z-50">
               <div className="fixed inset-0 bg-black/40" aria-hidden="true" />

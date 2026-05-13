@@ -89,7 +89,7 @@ export function Carrito() {
           <span className="text-orange-500">${total.toFixed(2)}</span>
         </div>
         <button
-          disabled={carrito.length === 0}
+          disabled={!hayItems}
           onClick={realizarCobro}
           className={`w-full py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${carrito.length > 0
             ? "bg-orange-500 hover:bg-orange-600 text-white"
