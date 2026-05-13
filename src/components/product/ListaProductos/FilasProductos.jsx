@@ -4,8 +4,9 @@ import { Pencil, Trash2 } from "lucide-react";
 export function FilasProductos({ producto, handleOpen, eliminarDatos }) {
   return (
     <tr className="hover:bg-slate-50 transition-colors">
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
-        {producto.nombre}
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800 flex items-center gap-2">
+        <span className='text-2xl'>{producto.emoji || "🌮"}</span>
+        <span>{producto.nombre}</span>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-orange-500">
         ${producto.precio.toFixed(2)}

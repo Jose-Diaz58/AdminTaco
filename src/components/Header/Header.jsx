@@ -1,85 +1,25 @@
 import React from "react";
 import { NavLink } from "react-router";
+import { LogOut, Settings } from "lucide-react"
 export function Header() {
   return (
-    <header className="bg-white border-b shadow-sm">
-      <div className="flex items-center justify-between px-4 py-2">
-
-        <div className="flex items-center gap-2 text-orange-500 font-bold text-xl">
-          🌮<span>Taqueria el amigo Abraham</span>
+    <header className="bg-orange-600 border-b-white shadow-sm">
+      <div className="flex items-center justify-between px-4 py-4">
+        <div className="flex items-center gap-2 text-white font-bold text-2xl">
+          <button onClick={() => alert("Profe paseme la materia 😭")}>🌮</button><span>Taqueria el amigo Abraham</span>
         </div>
-        <button className="text-2xl text-gray-700 hover:text-orange-500">
-          {" "}
-          ☰
-        </button>
+        <div className="flex items-center gap-3">
+          <NavLink to={"/Manager/Productos"}
+            className=
+            "flex items-center gap-2 bg bg-orange-700 hover:bg-orange-800 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
+          ><Settings size={18}/>Admin</NavLink>
+          <NavLink to={"/"} className="flex items-center gap-2 bg-red-600
+           hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+            Salir
+            <LogOut size={18}/>
+          </NavLink>
+        </div>
       </div>
-
-      <nav className="flex gap-3 px-6 pb-4 overflow-x-auto no-scrollbar">
-        <NavLink
-          to="/Inicio"
-          end
-          className={({ isActive }) =>
-            "px-4 py-2 rounded-2xl font-semibold transition-colors whitespace-nowrap " +
-            (isActive
-              ? "bg-orange-400 text-white shadow-md"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200")
-          }
-        >
-          Todos
-        </NavLink>
-        {/* Tacos */}
-        <NavLink
-          to="/Tacos"
-          end
-          className={({ isActive }) =>
-            "px-4 py-2 rounded-2xl font-semibold transition-colors whitespace-nowrap " +
-            (isActive
-              ? "bg-orange-400 text-white shadow-md"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200")
-          }
-        >
-          Tacos
-        </NavLink>
-        {/* Tortas */}
-        <NavLink
-          to="/Tortas"
-          end
-          className={({ isActive }) =>
-            "px-4 py-2 rounded-2xl font-semibold transition-colors whitespace-nowrap " +
-            (isActive
-              ? "bg-orange-400 text-white shadow-md"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200")
-          }
-        >
-          Tortas
-        </NavLink>
-        {/* Quesadilas */}
-        <NavLink
-          to="/Quesadillas"
-          end
-          className={({ isActive }) =>
-            "px-4 py-2 rounded-2xl font-semibold transition-colors whitespace-nowrap " +
-            (isActive
-              ? "bg-orange-400 text-white shadow-md"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200")
-          }
-        >
-          Quesadillas
-        </NavLink>
-        {/* Refrescos */}
-        <NavLink
-          to="/Refrescos"
-          end
-          className={({ isActive }) =>
-            "px-4 py-2 rounded-2xl font-semibold transition-colors whitespace-nowrap " +
-            (isActive
-              ? "bg-orange-400 text-white shadow-md"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200")
-          }
-        >
-          Refrescos
-        </NavLink>
-      </nav>
     </header>
   );
 }

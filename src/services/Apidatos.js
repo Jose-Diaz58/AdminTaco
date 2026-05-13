@@ -16,6 +16,15 @@ class DatosBD {
     async modificarDatos (id, data) {
         return await api.put (`/producto/actualizar/${id}`, data)
     }
+
+    // Funciones corregidas para ventas (sin 'static' y usando 'api')
+    async postVenta (datos) {
+        return await api.post('/venta/create', datos);
+    }
+
+    async getVentasPorFecha (fecha) {
+        return await api.get(`/venta/buscar?fecha=${fecha}`);
+    }
 }
 
 export default new DatosBD();
