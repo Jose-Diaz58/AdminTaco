@@ -1,4 +1,4 @@
-import { useMesas } from "../../components/Mesas/MesasContext";
+import { useMesas } from "../Mesas/MesasContext";
 import DatosBD from "../../services/Apidatos";
 import Swal from "sweetalert2";
 import { BanknoteArrowDown } from "lucide-react";
