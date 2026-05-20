@@ -1,4 +1,4 @@
-import { Header, SubHeader } from "../../components";
+import { Header, SubHeader,HeaderMesa } from "../../components";
 import { Carrito } from "../../components/Carrito"
 import { useCarrito } from "../../components/Carrito"
 
@@ -6,8 +6,8 @@ export function ClienteLayout({ children }) {
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       <Header />
+      <HeaderMesa/>
       <div className="flex flex-1 overflow-hidden">
-
         {/*subheader*/}
         <div className="flex flex-col flex-1 overflow-hidden">
           <SubHeader />
