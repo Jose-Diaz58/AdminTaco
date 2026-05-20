@@ -2,10 +2,13 @@ import { useCarrito } from "./CarritoContext";
 import { ShoppingCart, Trash2, Plus, Minus, CreditCard } from "lucide-react";
 import DatosBD from "../../services/Apidatos"
 import Swal from "sweetalert2"
+import { useState } from "react";
 
 export function Carrito() {
   const { carrito, eliminar, cambiarCantidad, total, limpiarCarrito } = useCarrito();
+  const [setmodalMesas,setModalMesas]=useState(false)
 
+  const hayItems=carrito.length>0
   const realizarCobro = async () => {
     try {
       const ticket = {
@@ -95,6 +98,13 @@ export function Carrito() {
           <CreditCard size={16} />
           COBRAR
         </button>
+        <button 
+        disabled={!hayItems}
+          onClick={()=>setModalMesas(true)}
+          className={`w-full py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${hayItems> 0
+            ? "bg-orange-500 hover:bg-orange-600 text-white"
+            : "bg-gray-100 text-gray-400 cursor-not-allowed"
+            }`}>Comer aqui</button>
       </div>
     </aside>
   )
