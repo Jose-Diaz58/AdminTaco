@@ -17,7 +17,6 @@ class DatosBD {
         return await api.put (`/producto/actualizar/${id}`, data)
     }
 
-    // Funciones corregidas para ventas (sin 'static' y usando 'api')
     async postVenta (datos) {
         return await api.post('/venta/create', datos);
     }
@@ -28,6 +27,14 @@ class DatosBD {
 
     async eliminarVentasPorFecha (fecha) {
         return await api.delete(`/venta/eliminarPorFecha/${fecha}`);
+    }
+
+    async loginUser(credenciales) {
+        return await api.post('/usuario/login', credenciales); 
+    }
+
+    async registerUser(datos) {
+        return await api.post('/usuario/registro', datos); 
     }
 }
 

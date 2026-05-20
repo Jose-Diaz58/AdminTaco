@@ -1,33 +1,33 @@
 import { useState, useEffect } from "react";
-import DatosBD from "../../services/Apidatos"
-import { DollarSign, ShoppingBag, TrendingUp, Calendar, Printer, Trash2 } from "lucide-react";
-import Swal from "sweetalert2"
+import DatosBD from "../../services/Apidatos";
+import { DollarSign } from "lucide-react";
+import Swal from "sweetalert2";
+import { Tarjetas, Historial, TopProductos, Controles } from "../../components/componentescierre";
 
 export function CierreCaja() {
   const hoy = new Date().toISOString().split("T")[0];
   const [fechaSeleccionada, setFechaSeleccionada] = useState(hoy);
+  const [ventasDia, setVentasDia] = useState([]);
 
-  const [ventasDia, setVentasDia] = useState([])
-
-  useEffect(()=>{
-    const cargarVentas = async ()=> {
+  useEffect(() => {
+    const cargarVentas = async () => {
       try {
-        const respuesta = await DatosBD.getVentasPorFecha(fechaSeleccionada)
-        setVentasDia(respuesta.data)
+        const respuesta = await DatosBD.getVentasPorFecha(fechaSeleccionada);
+        setVentasDia(respuesta.data);
       } catch (error) {
-        console.error("Error al cargar las ventas", error)
+        console.error("Error al cargar las ventas", error);
       }
-    }
-    cargarVentas()
-  }, [fechaSeleccionada])
+    };
+    cargarVentas();
+  }, [fechaSeleccionada]);
 
-  const totalVentas = ventasDia.reduce((acumulador, venta)=> acumulador + venta.total, 0);
+  // Cálculos lógicos
+  const totalVentas = ventasDia.reduce((acumulador, venta) => acumulador + venta.total, 0);
   const totalTransacciones = ventasDia.length;
-  const ticketPromedio = totalTransacciones > 0  ? (totalVentas/totalTransacciones) : 0;
+  const ticketPromedio = totalTransacciones > 0 ? (totalVentas / totalTransacciones) : 0;
 
-const obtenerTopProductos = () => {
+  const obtenerTopProductos = () => {
     const conteo = {};
-    
     ventasDia.forEach(venta => {
       venta.productos.forEach(producto => {
         if (conteo[producto.nombre]) {
@@ -51,8 +51,8 @@ const obtenerTopProductos = () => {
   const topProductos = obtenerTopProductos();
   
   const handleImprimirReporte = () => {
-    window.print()
-  }
+    window.print();
+  };
 
   const handleLimpiarCierre = async () => {
     if (ventasDia.length === 0) return;
@@ -70,26 +70,15 @@ const obtenerTopProductos = () => {
 
     if (result.isConfirmed) {
       try {
-        await DatosBD.eliminarVentasPorFecha(fechaSeleccionada)
+        await DatosBD.eliminarVentasPorFecha(fechaSeleccionada);
         setVentasDia([]);
         
-        Swal.fire(
-          '¡Borrado!',
-          'El cierre del día ha sido limpiado correctamente.',
-          'success'
-        );
+        Swal.fire('¡Borrado!', 'El cierre del día ha sido limpiado correctamente.', 'success');
       } catch (error) {
         Swal.fire('Error', 'Hubo un problema al borrar los datos.', 'error');
       }
     }
   };
-
-  const stats = [
-    { id: 1, label: "Total Ventas", value: `$${totalVentas.toFixed(2)}`, icon: <DollarSign className="w-6 h-6 md:h-8 text-green-600" />, textColor: "text-green-600", bgcolor: "bg-green-100" },
-    { id: 2, label: "Transacciones", value: `${totalTransacciones}`, icon: <ShoppingBag className="w-6 h-6 md:h-8 text-blue-600" />, textColor: "text-blue-600", bgcolor: "bg-blue-100" },
-    { id: 3, label: "Ticket Promedio", value: `$${ticketPromedio.toFixed(2)}`, icon: <TrendingUp className="text-orange-600" />, textColor: "text-orange-600", bgcolor: "bg-orange-100" },
-  ];
-
 
   return (
     <div className="w-full max-w-7xl mx-auto space-y-4 md:space-y-6">
@@ -101,126 +90,13 @@ const obtenerTopProductos = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-        {stats.map((item) => (
-          <div key={item.id} className="flex items-center justify-between p-4 md:p-6 bg-white rounded-lg shadow-sm border border-gray-100">
-            <div className="flex flex-col">
-              <p className="text-xs md:text-sm font-medium text-gray-600">{item.label}</p>
-              <p className={`text-2xl md:text-3xl font-bold mt-1 ${item.textColor}`}>{item.value}</p>
-            </div>
-            <div className={`flex items-center justify-center p-2 md:p-3 rounded-full ${item.bgcolor}`}>
-              {item.icon}
-            </div>
-          </div>
-        ))}
-      </div>
+      <Tarjetas totalVentas={totalVentas} totalTransacciones={totalTransacciones} ticketPromedio={ticketPromedio} />
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 md:p-6 print:border-none print:shadow-none">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4 md:mb-6 print:hidden">
-          <div className="flex items-center gap-2 md:gap-3">
-            <Calendar className="text-gray-600 w-5 h-5 md:w-6 md:h-6" />
-            <span className="text-gray-800 font-medium text-sm md:text-base">Fecha:</span>
-            <input
-              type="date"
-              value={fechaSeleccionada}
-              onChange={(e) => setFechaSeleccionada(e.target.value)}
-              className="border border-gray-300 rounded-lg px-3 py-1.5 md:px-4 md:py-2 outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-800 font-medium w-36 md:w-40 cursor-pointer text-sm md:text-base"
-            />
-          </div>
+      <Controles fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} handleImprimirReporte={handleImprimirReporte} handleLimpiarCierre={handleLimpiarCierre} ventasDia={ventasDia} totalTransacciones={totalTransacciones} totalVentas={totalVentas} />
 
-          <div className="flex gap-2 w-full md:w-auto">
-            <button onClick={handleImprimirReporte} className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg font-medium transition-colors text-sm md:text-base">
-              <Printer className="w-4 h-4 md:w-5 md:h-5" />
-              Imprimir Reporte
-            </button>
-            <button onClick={handleLimpiarCierre} disabled={ventasDia.length === 0} className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-lg font-medium transition-all text-sm md:text-base ${ventasDia.length === 0 ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-700 text-white shadow-sm"}`}>
-              <Trash2 className="w-4 h-4 md:w-5 md:h-5" />Limpiar Cierre
-            </button>
-          </div>
-        </div>
+      <TopProductos topProductos={topProductos} />
 
-        <div className="bg-orange-50 border-l-4 border-orange-500 rounded-r-lg p-3 md:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-          <div>
-            <h3 className="text-gray-800 text-base md:text-lg font-medium">Total del día seleccionado:</h3>
-            <p className="text-gray-500 text-xs md:text-sm mt-1">{totalTransacciones} transacciones realizadas</p>
-          </div>
-          <div className="text-xl md:text-2xl font-bold text-orange-600">${totalVentas.toFixed(2)}</div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-        <div className="bg-linear-to-r from-purple-500 to-purple-600 text-white p-4 md:p-6">
-          <h2 className="text-lg md:text-xl font-bold">Top 5 Productos Más Vendidos</h2>
-        </div>
-        <div className="p-4 md:p-6 space-y-3 md:space-y-4">
-          {topProductos.length === 0 ? (
-          <p className="text-center text-gray-500 py-8 text-sm md:text-base">No hay nada xd</p>
-          ) : (
-            topProductos.map((producto, index) => (
-              <div key={index} className="flex items-center justify-between p-3 md:p-4 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-white">
-                <div className="flex items-center gap-3 md:gap-5">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-purple-100 text-purple-700 font-bold text-sm md:text-base shrink-0">
-                    #{index + 1}
-                  </div>
-                  <div className="text-2xl md:text-3xl shrink-0">
-                    {producto.emoji}
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-semibold text-gray-800 text-sm md:text-base">{producto.nombre}</span>
-                    <span className="text-gray-500 text-xs md:text-sm">{producto.cantidad} unidades vendidas</span>
-                  </div>
-                </div>
-                <div className="text-purple-600 font-bold text-lg md:text-xl whitespace-nowrap ml-2">
-                  ${producto.total.toFixed(2)}
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-        <div className="bg-linear-to-r from-orange-500 to-orange-600 text-white p-4 md:p-6">
-          <h2 className="text-lg md:text-xl font-bold">Historial de ventas - {fechaSeleccionada}</h2>
-        </div>
-        <div className="p-0 overflow-x-auto">
-          {ventasDia.length === 0 ? (
-            <p className="text-center text-gray-500 py-8 text-sm md:text-base">No hay ventas registradas para este día.</p>
-          ) : (
-            <table className="w-full text-left text-sm">
-              <thead className="bg-gray-50 text-gray-500 font-medium">
-                <tr>
-                  <th className="px-6 py-3">Hora</th>
-                  <th className="px-6 py-3">Productos</th>
-                  <th className="px-6 py-3 text-right">Monto</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {ventasDia.map((venta) => (
-                  <tr key={venta._id} className="hover:bg-orange-50/50 transition-colors">
-                    <td className="px-6 py-4 text-gray-500 whitespace-nowrap align-top">
-                      {new Date(venta.fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col gap-1">
-                        {venta.productos.map((p, i) => (
-                          <span key={i} className="text-gray-700 text-xs sm:text-sm">
-                            <span className="text-orange-500 font-bold w-6 inline-block">x{p.cantidad}</span>
-                            {p.nombre}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-right font-bold text-gray-800 whitespace-nowrap align-top">
-                      ${venta.total.toFixed(2)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      </div>
+      <Historial   ventasDia={ventasDia} fechaSeleccionada={fechaSeleccionada} />
     </div>
   );
 }
