@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import DatosBD from "../../services/Apidatos"
 import { DollarSign, ShoppingBag, TrendingUp, Calendar, Printer, Trash2 } from "lucide-react";
+import Swal from "sweetalert2"
 
 export function CierreCaja() {
   const hoy = new Date().toISOString().split("T")[0];
@@ -19,15 +20,74 @@ export function CierreCaja() {
     }
     cargarVentas()
   }, [fechaSeleccionada])
+
+  const totalVentas = ventasDia.reduce((acumulador, venta)=> acumulador + venta.total, 0);
+  const totalTransacciones = ventasDia.length;
+  const ticketPromedio = totalTransacciones > 0  ? (totalVentas/totalTransacciones) : 0;
+
+const obtenerTopProductos = () => {
+    const conteo = {};
+    
+    ventasDia.forEach(venta => {
+      venta.productos.forEach(producto => {
+        if (conteo[producto.nombre]) {
+          conteo[producto.nombre].cantidad += producto.cantidad;
+          conteo[producto.nombre].total += (producto.precio * producto.cantidad);
+        } else {
+          conteo[producto.nombre] = {
+            nombre: producto.nombre,
+            cantidad: producto.cantidad,
+            total: producto.precio * producto.cantidad,
+            emoji: producto.emoji || "🌮" 
+          };
+        }
+      });
+    });
+
+    const arregloTop = Object.values(conteo);
+    return arregloTop.sort((a, b) => b.cantidad - a.cantidad).slice(0, 5);
+  };
+
+  const topProductos = obtenerTopProductos();
   
   const handleImprimirReporte = () => {
     window.print()
   }
 
+  const handleLimpiarCierre = async () => {
+    if (ventasDia.length === 0) return;
+
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: `Se borrarán permanentemente todas las ventas del día ${fechaSeleccionada}. Esta acción no se puede deshacer.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ea580c',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'Sí, borrar todo',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await DatosBD.eliminarVentasPorFecha(fechaSeleccionada)
+        setVentasDia([]);
+        
+        Swal.fire(
+          '¡Borrado!',
+          'El cierre del día ha sido limpiado correctamente.',
+          'success'
+        );
+      } catch (error) {
+        Swal.fire('Error', 'Hubo un problema al borrar los datos.', 'error');
+      }
+    }
+  };
+
   const stats = [
-    { id: 1, label: "Total Ventas", value: "$0.00", icon: <DollarSign className="w-6 h-6 md:h-8 text-green-600" />, textColor: "text-green-600", bgcolor: "bg-green-100" },
-    { id: 2, label: "Transacciones", value: "0", icon: <ShoppingBag className="w-6 h-6 md:h-8 text-blue-600" />, textColor: "text-blue-600", bgcolor: "bg-blue-100" },
-    { id: 3, label: "Ticket Promedio", value: "$0.00", icon: <TrendingUp className="text-orange-600" />, textColor: "text-orange-600", bgcolor: "bg-orange-100" },
+    { id: 1, label: "Total Ventas", value: `$${totalVentas.toFixed(2)}`, icon: <DollarSign className="w-6 h-6 md:h-8 text-green-600" />, textColor: "text-green-600", bgcolor: "bg-green-100" },
+    { id: 2, label: "Transacciones", value: `${totalTransacciones}`, icon: <ShoppingBag className="w-6 h-6 md:h-8 text-blue-600" />, textColor: "text-blue-600", bgcolor: "bg-blue-100" },
+    { id: 3, label: "Ticket Promedio", value: `$${ticketPromedio.toFixed(2)}`, icon: <TrendingUp className="text-orange-600" />, textColor: "text-orange-600", bgcolor: "bg-orange-100" },
   ];
 
 
@@ -73,9 +133,8 @@ export function CierreCaja() {
               <Printer className="w-4 h-4 md:w-5 md:h-5" />
               Imprimir Reporte
             </button>
-            <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg font-medium transition-colors text-sm md:text-base">
-              <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
-              Limpiar Cierre
+            <button onClick={handleLimpiarCierre} disabled={ventasDia.length === 0} className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-lg font-medium transition-all text-sm md:text-base ${ventasDia.length === 0 ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-700 text-white shadow-sm"}`}>
+              <Trash2 className="w-4 h-4 md:w-5 md:h-5" />Limpiar Cierre
             </button>
           </div>
         </div>
@@ -83,9 +142,9 @@ export function CierreCaja() {
         <div className="bg-orange-50 border-l-4 border-orange-500 rounded-r-lg p-3 md:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <div>
             <h3 className="text-gray-800 text-base md:text-lg font-medium">Total del día seleccionado:</h3>
-            <p className="text-gray-500 text-xs md:text-sm mt-1">0 transacciones realizadas</p>
+            <p className="text-gray-500 text-xs md:text-sm mt-1">{totalTransacciones} transacciones realizadas</p>
           </div>
-          <div className="text-xl md:text-2xl font-bold text-orange-600">$0.00</div>
+          <div className="text-xl md:text-2xl font-bold text-orange-600">${totalVentas.toFixed(2)}</div>
         </div>
       </div>
 
@@ -93,8 +152,30 @@ export function CierreCaja() {
         <div className="bg-linear-to-r from-purple-500 to-purple-600 text-white p-4 md:p-6">
           <h2 className="text-lg md:text-xl font-bold">Top 5 Productos Más Vendidos</h2>
         </div>
-        <div className="p-4 md:p-6">
+        <div className="p-4 md:p-6 space-y-3 md:space-y-4">
+          {topProductos.length === 0 ? (
           <p className="text-center text-gray-500 py-8 text-sm md:text-base">No hay nada xd</p>
+          ) : (
+            topProductos.map((producto, index) => (
+              <div key={index} className="flex items-center justify-between p-3 md:p-4 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-white">
+                <div className="flex items-center gap-3 md:gap-5">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-purple-100 text-purple-700 font-bold text-sm md:text-base shrink-0">
+                    #{index + 1}
+                  </div>
+                  <div className="text-2xl md:text-3xl shrink-0">
+                    {producto.emoji}
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-gray-800 text-sm md:text-base">{producto.nombre}</span>
+                    <span className="text-gray-500 text-xs md:text-sm">{producto.cantidad} unidades vendidas</span>
+                  </div>
+                </div>
+                <div className="text-purple-600 font-bold text-lg md:text-xl whitespace-nowrap ml-2">
+                  ${producto.total.toFixed(2)}
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 

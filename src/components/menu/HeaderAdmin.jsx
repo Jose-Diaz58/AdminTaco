@@ -1,5 +1,5 @@
-import {Menu, UserCircle, LogOut} from "lucide-react";
-import { NavLink} from "react-router"
+import {Menu, UserCircle, LogOut} from "lucide-react"
+import { NavLink } from 'react-router'
 
 export function HeaderAdmin({toggleSidebar}) {
   return (

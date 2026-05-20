@@ -25,6 +25,10 @@ class DatosBD {
     async getVentasPorFecha (fecha) {
         return await api.get(`/venta/buscar?fecha=${fecha}`);
     }
+
+    async eliminarVentasPorFecha (fecha) {
+        return await api.delete(`/venta/eliminarPorFecha/${fecha}`);
+    }
 }
 
 export default new DatosBD();
