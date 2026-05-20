@@ -3,7 +3,7 @@ import DatosBD from "../../services/Apidatos";
 import { Users, Pencil, Trash2 ,BanknoteArrowDown} from "lucide-react"
 import Swal from 'sweetalert2';
 
-export function MesasGestion({ mesas, handleOpen, eliminarMesa, liberarMesa ,obtenerMesas}) {
+export function MesasGestion({ mesas, handleOpen, eliminarMesa, liberarMesa ,obtenerMesas,}) {
 
   //mensaje de elimiar mesa
   const deleteMesa = (id) => {

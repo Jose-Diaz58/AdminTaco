@@ -88,9 +88,9 @@ export function PanelMesas({ onClose }) {
           </div>
         </div>
 
-        {/* Footer informativo */}
+        {/* pie del cuadro */}
         <div className="p-4 bg-white border-t flex justify-between items-center">
-          <p className="text-sm text-gray-500 italic">Haz clic en una mesa libre para asignar el pedido actual.</p>
+          <p className="text-sm text-gray-500 italic">Haz clic en una mesa  para asignar el pedido actual</p>
           <div className="text-right">
             <p className="text-xs text-gray-400">Total del pedido:</p>
             <p className="text-lg font-bold text-orange-600">${total.toFixed(2)}</p>

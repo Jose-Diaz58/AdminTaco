@@ -36,7 +36,7 @@ export function GestionMesas() {
             </div>
             <button onClick={() => handleOpen()}
               className="flex items-center justify-center gap-2 bg-white text-orange-600 px-4 py-2 rounded-lg font-bold hover:bg-orange-50 transition-colors text-sm md:text-base">
-              <Plus className="w-4 h-4 md:w-5 md:h-5" />Nueva Mesa 
+              <Plus className="w-4 h-4 md:w-5 md:h-5" />Nueva Mesa
             </button>
             <Dialog open={isOpen} onClose={() => handleOpen()} className="relative z-50">
               <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
@@ -56,13 +56,26 @@ export function GestionMesas() {
             </Dialog>
           </div>
           {/* //adentro */}
-          ocupado-libre
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <div className="bg-orange-400 bg-opacity-40 rounded-lg p-3">
+              <p className="text-orange-100 text-xs">Libres</p>
+              <p className="text-2xl font-bold">
+                {mesas.filter(mesa => mesa.estado === "Libre").length}
+              </p>
+            </div>
+            <div className="bg-orange-400 bg-opacity-40 rounded-lg p-3">
+              <p className="text-orange-100 text-xs">Ocupadas</p>
+              <p className="text-2xl font-bold">
+                {mesas.filter(mesa => mesa.estado === "Ocupado").length}
+              </p>
+            </div>
           </div>
-          <div className="flex-1 overflow-auto p-6">
-            <MesasGestion mesas={mesas} 
-            handleOpen={handleOpen} 
+        </div>
+        <div className="flex-1 overflow-auto p-6">
+          <MesasGestion mesas={mesas}
+            handleOpen={handleOpen}
             eliminarMesa={eliminarMesa}
-            liberarMesa={liberarMesa}/>
+            liberarMesa={liberarMesa} />
         </div>
       </div>
     </div>

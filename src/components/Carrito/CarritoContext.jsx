@@ -33,8 +33,13 @@ export function CarritoProvider({ children }) {
 
     //totalsao
     const total = carrito.reduce((acumulado, item) => acumulado + item.precio * item.cantidad, 0)
+
+    const carritofunction = {
+        carrito,
+        agregar, eliminar, cambiarCantidad, limpiarCarrito, total
+    }
     return (
-        <CarritoContext.Provider value={{ carrito, agregar, eliminar, cambiarCantidad, limpiarCarrito, total }}>{children}</CarritoContext.Provider>
+        <CarritoContext.Provider value={carritofunction}>{children}</CarritoContext.Provider>
     )
 }
 export function useCarrito() {
