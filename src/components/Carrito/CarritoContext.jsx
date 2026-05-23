@@ -3,7 +3,8 @@ const CarritoContext = createContext();
 
 export function CarritoProvider({ children }) {
     const [carrito, setCarrito] = useState([]);
-
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    
     //agregasao
     const agregar = (producto) => {
         const prodId = producto._id
@@ -36,7 +37,7 @@ export function CarritoProvider({ children }) {
 
     const carritofunction = {
         carrito,
-        agregar, eliminar, cambiarCantidad, limpiarCarrito, total
+        agregar, eliminar, cambiarCantidad, limpiarCarrito, total, isCartOpen, setIsCartOpen
     }
     return (
         <CarritoContext.Provider value={carritofunction}>{children}</CarritoContext.Provider>
