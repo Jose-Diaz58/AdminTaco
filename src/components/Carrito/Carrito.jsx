@@ -128,10 +128,11 @@ export function Carrito() {
               : "bg-gray-100 text-gray-400 cursor-not-allowed"
               }`}>Comer aqui</button>
         </div>
-        {modalMesas && (
-          <PanelMesas onClose={() => setModalMesas(false)} />
-        )}
-      </aside>
+        </aside>
+
+      {modalMesas && (
+        <PanelMesas onClose={() => setModalMesas(false)} />
+      )}
     </>
   )
 }

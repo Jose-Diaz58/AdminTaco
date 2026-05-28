@@ -7,24 +7,27 @@ export function MesasGestion({ mesas, handleOpen, eliminarMesa, liberarMesa ,obt
 
   //mensaje de elimiar mesa
   const deleteMesa = (id) => {
-    Swal.fire({
-      title: "Elimar esta mesa?",
-      text: "No se podra recuperar!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminar!"
-    }).then((async (result) => {
-      if (result.isConfirmed) {
-        eliminarMesa(id)
-      } Swal.fire({
-        title: "Eliminado!",
-        text: "Se borro correctaente.",
+  Swal.fire({
+    title: "¿Eliminar esta mesa?",
+    text: "¡No se podrá recuperar!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await eliminarMesa(id); 
+      
+      Swal.fire({
+        title: "¡Eliminado!",
+        text: "Se borró correctamente.",
         icon: "success"
       });
-    }));
-  }
+    }
+  });
+};
 
   //cobro de mesa
   const cobrarMesa = async (mesa) => {
