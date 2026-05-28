@@ -2,7 +2,7 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 
 const api = Axios.create({
-    baseURL:'https://admintaco.onrender.com'
+    baseURL:'https://admintaco.onrender.com/api'
 });
 
 api.interceptors.request.use((config) => {
