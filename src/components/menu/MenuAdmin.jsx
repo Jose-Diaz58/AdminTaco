@@ -51,7 +51,7 @@ export function MenuAdmin({ isOpen, toggleSidebar }) {
             className="flex items-center justify-center gap-2 bg-red-100 text-red-600 hover:bg-red-200 px-4 py-2.5 rounded-lg font-medium transition-colors w-full"
           >
             <LogOut size={18} />
-            <span>Cerrar Sesión</span>
+            <span>Pagina principal</span>
           </NavLink>
         </div>
 
